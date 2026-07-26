@@ -52,13 +52,13 @@
 | Framework preset | Next.js (Static HTML Export) |
 | Build command | `npm run build` |
 | Build output directory | `out` |
-| Deploy command | 空欄 |
+| Deploy command | `npm run deploy` |
 
-Git連携の Pages プロジェクトでは、ビルド後に `out` ディレクトリが自動的にアップロードされます。Deploy command は空欄にしてください。
+Git連携の Pages プロジェクトで Deploy command の入力欄がない場合は、ビルド後に `out` ディレクトリが自動的にアップロードされます。
 
-Cloudflare のログに `Executing user deploy command: npx wrangler deploy` が出ている場合は、Workers 用のデプロイコマンドが残っています。`npx wrangler deploy` は使わず、Cloudflare 側の Deploy command を空欄に戻してください。
+Cloudflare のログに `Executing user deploy command: npx wrangler deploy` が出ている場合は、Workers 用のデプロイコマンドが残っています。`npx wrangler deploy` は使わず、Cloudflare 側の Deploy command を `npm run deploy` に変更してください。
 
-もし Cloudflare の画面で Deploy command の入力が必須になっている構成を使う場合は、以下のどちらかを指定してください。
+Cloudflare の画面で直接コマンドを指定する場合は、以下でも構いません。
 
 - `npx wrangler pages deploy out --project-name shinju`
 - `npm run deploy:pages`

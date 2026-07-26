@@ -8,7 +8,8 @@
     "dev": "next dev",
     "prebuild": "npm run sync:media",
     "build": "next build",
-    "deploy:pages": "npx wrangler pages deploy out --project-name shinju",
+    "deploy": "npx wrangler pages deploy out --project-name shinju",
+    "deploy:pages": "npm run deploy",
     "start": "next start",
     "lint": "next lint"
   },

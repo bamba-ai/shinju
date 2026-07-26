@@ -1,5 +1,3 @@
-const basePath = "/shinju";
-
 const profileItems = [
   ["生年月日", "2005年5月26日"],
   ["年齢", "21歳"],
@@ -27,15 +25,15 @@ const statItems = [
 const movieItems = [
   {
     title: "Practice Clip 01",
-    src: `${basePath}/media/IMG_4869.mp4`
+    src: "/media/IMG_4869.mp4"
   },
   {
     title: "Practice Clip 02",
-    src: `${basePath}/media/IMG_3595.mp4`
+    src: "/media/IMG_3595.mp4"
   },
   {
     title: "Practice Clip 03",
-    src: `${basePath}/media/IMG_5630.mp4`
+    src: "/media/IMG_5630.mp4"
   }
 ];
 
@@ -45,7 +43,7 @@ export default function Home() {
       <section className="hero" aria-label="青木 新樹選手の紹介">
         <video
           className="heroVideo"
-          src={`${basePath}/media/IMG_4869.mp4`}
+          src="/media/IMG_4869.mp4"
           autoPlay
           muted
           loop
@@ -55,7 +53,7 @@ export default function Home() {
         />
         <div className="heroShade" />
         <nav className="topNav" aria-label="サイト内メニュー">
-          <a className="brand" href="/shinju/">
+          <a className="brand" href="/">
             Shinju Aoki
           </a>
           <div className="navLinks">
@@ -175,7 +173,7 @@ export default function Home() {
             <strong>青木 新樹選手 応援サイト</strong>
             <span>Shinju Aoki Support Site</span>
           </div>
-          <a href="https://bamba-ai.com/shinju">bamba-ai.com/shinju</a>
+          <a href="https://shinju.bamba-ai.com">shinju.bamba-ai.com</a>
         </div>
       </footer>
     </main>

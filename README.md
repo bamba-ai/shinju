@@ -2,7 +2,7 @@
 
 このリポジトリは、プロゴルファーを目指す青木 新樹選手の応援サイトです。
 
-ホームページURL: https://bamba-ai.com/shinju
+ホームページURL: https://shinju.bamba-ai.com
 
 ## 青木 新樹選手について
 
@@ -41,7 +41,7 @@
 - フロントエンド: Next.js（App Router）
 - ホスティング: Cloudflare Pages
 - ドメイン: bamba-ai.com（Cloudflareで取得済み）
-- ホームページURL: https://bamba-ai.com/shinju
+- ホームページURL: https://shinju.bamba-ai.com
 - コード管理: https://github.com/bamba-ai/shinju
 - CI/CD: GitHubのソースコードを更新すると、自動的にCloudflare Pagesも更新される構成にする
 
@@ -55,6 +55,10 @@
 | Build command | `npm run build` |
 | Build output directory | `out` |
 | Deploy command | `npm run deploy` |
+
+Custom domain には以下を追加してください。
+
+- `shinju.bamba-ai.com`
 
 Git連携の Pages プロジェクトで Deploy command の入力欄がない場合は、ビルド後に `out` ディレクトリが自動的にアップロードされます。
 

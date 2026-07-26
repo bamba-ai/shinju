@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "sync:media": "mkdir -p public/media && cp -R images/. public/media/",
+    "sync:media": "rm -rf public/media && mkdir -p public/media && cp -R images/optimized/. public/media/",
     "predev": "npm run sync:media",
     "dev": "next dev",
     "prebuild": "npm run sync:media",
@@ -22,7 +22,8 @@
     "@types/node": "^20.17.0",
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",
-    "typescript": "^5.9.3"
+    "typescript": "^5.9.3",
+    "wrangler": "^4.114.0"
   },
   "overrides": {
     "postcss": "8.5.23",

@@ -27,15 +27,15 @@ const statItems = [
 const movieItems = [
   {
     title: "Practice Clip 01",
-    src: `${basePath}/media/IMG_4869.MOV`
+    src: `${basePath}/media/IMG_4869.mp4`
   },
   {
     title: "Practice Clip 02",
-    src: `${basePath}/media/IMG_3595.MOV`
+    src: `${basePath}/media/IMG_3595.mp4`
   },
   {
     title: "Practice Clip 03",
-    src: `${basePath}/media/IMG_5630.MOV`
+    src: `${basePath}/media/IMG_5630.mp4`
   }
 ];
 
@@ -45,7 +45,7 @@ export default function Home() {
       <section className="hero" aria-label="青木 新樹選手の紹介">
         <video
           className="heroVideo"
-          src={`${basePath}/media/IMG_4869.MOV`}
+          src={`${basePath}/media/IMG_4869.mp4`}
           autoPlay
           muted
           loop

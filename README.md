@@ -34,6 +34,8 @@
 
 サイト内で必要に応じて適宜利用してください。
 
+サイトで配信する動画は `images/optimized` の軽量版 MP4 を使います。Cloudflare の静的アセット制限に収めるため、ビルド時は `images/optimized` だけを `public/media` に同期します。
+
 ## 技術要件
 
 - フロントエンド: Next.js（App Router）
@@ -62,3 +64,5 @@ Cloudflare の画面で直接コマンドを指定する場合は、以下でも
 
 - `npx wrangler pages deploy out --project-name shinju`
 - `npm run deploy:pages`
+
+古い設定で `npx wrangler deploy` が実行されても落ちないよう、`wrangler.jsonc` では `assets.directory` に `./out` を指定しています。

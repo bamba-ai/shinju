@@ -54,4 +54,11 @@
 | Build output directory | `out` |
 | Deploy command | 空欄 |
 
-`npx wrangler deploy` は Workers 用のデプロイコマンドです。このサイトで実行すると OpenNext/Workers 変換が走り、`.next/standalone/.next/server/pages-manifest.json` が見つからず失敗します。
+Git連携の Pages プロジェクトでは、ビルド後に `out` ディレクトリが自動的にアップロードされます。Deploy command は空欄にしてください。
+
+Cloudflare のログに `Executing user deploy command: npx wrangler deploy` が出ている場合は、Workers 用のデプロイコマンドが残っています。`npx wrangler deploy` は使わず、Cloudflare 側の Deploy command を空欄に戻してください。
+
+もし Cloudflare の画面で Deploy command の入力が必須になっている構成を使う場合は、以下のどちらかを指定してください。
+
+- `npx wrangler pages deploy out --project-name shinju`
+- `npm run deploy:pages`

@@ -125,27 +125,28 @@ export default function Home() {
         <div className="sectionInner supportLayout">
           <div className="supportCopy">
             <p className="sectionKicker">Support</p>
-            <h2>地域の魅力を伝えながら、挑戦を支える。</h2>
+            <h2>青木 新樹君を応援するサポーターを募集しています。</h2>
             <p>
-              主な支援内容は、地域のお店や事業者の魅力をわかりやすく伝えるお手伝いです。
-              青木選手の活動を通じて、応援する人・お店・地域が前向きにつながる場を育てます。
+              プロゴルファーを目指す挑戦を継続していくために、個人・企業・地域の皆さまからの
+              応援を募集しています。いただいたご支援は、練習環境の充実や試合への挑戦に大切に
+              活用します。
             </p>
           </div>
-          <div className="supportPoints" aria-label="支援内容">
+          <div className="supportPoints" aria-label="サポーター募集内容">
             <div>
               <span>01</span>
-              <strong>お店の魅力を整理</strong>
-              <p>伝えたい価値を見つけ、読み手に届く形へ整えます。</p>
+              <strong>個人サポーター</strong>
+              <p>一人ひとりの応援が、日々の練習と競技への挑戦を支えます。</p>
             </div>
             <div>
               <span>02</span>
-              <strong>事業者の発信を支援</strong>
-              <p>地域の事業者が持つ強みや想いを、わかりやすく紹介します。</p>
+              <strong>企業・店舗スポンサー</strong>
+              <p>活動をともに広げるパートナーとして、継続的なご支援を募集しています。</p>
             </div>
             <div>
               <span>03</span>
-              <strong>応援の接点をつくる</strong>
-              <p>競技への挑戦と地域の活動が自然に交わるきっかけを増やします。</p>
+              <strong>応援メッセージ</strong>
+              <p>声援やご紹介など、できる形で青木 新樹君の挑戦を後押ししてください。</p>
             </div>
           </div>
         </div>

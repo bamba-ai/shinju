@@ -1,0 +1,5 @@
+/shinju /index.html 200
+/shinju/ /index.html 200
+/shinju/_next/* /_next/:splat 200
+/shinju/media/* /media/:splat 200
+/shinju/* /:splat 200

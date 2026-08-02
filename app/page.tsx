@@ -3,7 +3,7 @@ const profileItems = [
   ["年齢", "21歳"],
   ["出身地", "東京都"],
   ["身長", "180cm"],
-  ["体重", "75〜80kg"],
+  ["体重", "80kg"],
   ["血液型", "AB型"],
   ["出身校", "ロスミニ・カレッジ"],
   ["所属", "フリー"],
@@ -58,6 +58,7 @@ export default function Home() {
           </a>
           <div className="navLinks">
             <a href="#profile">Profile</a>
+            <a href="#interview">Interview</a>
             <a href="#support">Support</a>
             <a href="#movie">Movie</a>
           </div>
@@ -70,11 +71,11 @@ export default function Home() {
             得意クラブのパターで一打ずつ未来を切り拓くアマチュアゴルファーです。
           </p>
           <div className="heroActions" aria-label="主要リンク">
-            <a className="primaryLink" href="#support">
-              応援する
+            <a className="primaryLink" href="#interview">
+              インタビューを見る
             </a>
-            <a className="secondaryLink" href="#profile">
-              プロフィール
+            <a className="secondaryLink" href="#support">
+              応援する
             </a>
           </div>
         </div>
@@ -96,9 +97,34 @@ export default function Home() {
           </div>
           <p>
             このサイトは、プロゴルファーを目指す青木 新樹選手の挑戦を伝え、
-            応援の輪を広げるためのホームページです。競技に向き合う姿勢と、
-            地域のお店や事業者の魅力をわかりやすく届ける活動を紹介します。
+            応援の輪を広げるためのホームページです。日々の練習と試合への挑戦を通じて、
+            プロへの道を一歩ずつ進んでいます。
           </p>
+        </div>
+      </section>
+
+      <section className="interviewSection" id="interview" aria-labelledby="interview-heading">
+        <div className="sectionInner interviewLayout">
+          <div className="interviewCopy">
+            <p className="sectionKicker">Interview</p>
+            <h2 id="interview-heading">プロへの想いを、言葉で。</h2>
+            <p>
+              ゴルフを始めたきっかけ、目標、そして応援してくださる皆さまへのメッセージ。
+              青木 新樹選手の現在地を、インタビューでご覧ください。
+            </p>
+            <a className="textLink" href="https://youtu.be/fZdz47UGSuY" target="_blank" rel="noreferrer">
+              YouTubeで開く <span aria-hidden="true">↗</span>
+            </a>
+          </div>
+          <div className="interviewFrame">
+            <iframe
+              src="https://www.youtube-nocookie.com/embed/fZdz47UGSuY?rel=0"
+              title="青木 新樹選手 インタビュー"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowFullScreen
+              loading="lazy"
+            />
+          </div>
         </div>
       </section>
 
@@ -159,7 +185,7 @@ export default function Home() {
           <div className="movieGrid">
             {movieItems.map((movie) => (
               <article className="movieCard" key={movie.title}>
-                <video src={movie.src} controls playsInline preload="metadata" />
+                <video src={movie.src} controls playsInline preload="metadata" aria-label={`${movie.title}の動画`} />
                 <h3>{movie.title}</h3>
               </article>
             ))}

@@ -33,6 +33,13 @@ a {
   text-decoration: none;
 }
 
+a:focus-visible,
+video:focus-visible,
+iframe:focus-visible {
+  outline: 3px solid var(--gold);
+  outline-offset: 4px;
+}
+
 main {
   min-height: 100vh;
   overflow-x: clip;
@@ -231,6 +238,7 @@ main {
   font-size: 2.5rem;
   line-height: 1.22;
   letter-spacing: 0;
+  text-wrap: balance;
 }
 
 .intro p:not(.sectionKicker),
@@ -246,6 +254,66 @@ main {
   background:
     linear-gradient(180deg, rgba(199, 150, 53, 0.12), transparent 280px),
     var(--paper);
+}
+
+.interviewSection {
+  background:
+    radial-gradient(circle at 80% 10%, rgba(199, 150, 53, 0.22), transparent 30%),
+    linear-gradient(130deg, #0c4a3b, var(--green-deep) 68%);
+  color: var(--white);
+}
+
+.interviewLayout {
+  display: grid;
+  grid-template-columns: minmax(0, 0.74fr) minmax(0, 1.26fr);
+  gap: 64px;
+  align-items: center;
+}
+
+.interviewCopy h2 {
+  margin: 0;
+  font-size: clamp(2.15rem, 4vw, 3.65rem);
+  line-height: 1.18;
+  text-wrap: balance;
+}
+
+.interviewCopy p:not(.sectionKicker) {
+  margin: 24px 0 0;
+  color: rgba(255, 253, 248, 0.8);
+  line-height: 2;
+}
+
+.textLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 28px;
+  padding-bottom: 7px;
+  border-bottom: 1px solid var(--gold);
+  color: var(--white);
+  font-size: 0.94rem;
+  font-weight: 800;
+}
+
+.textLink span {
+  color: var(--gold);
+  font-size: 1.1em;
+}
+
+.interviewFrame {
+  overflow: hidden;
+  aspect-ratio: 16 / 9;
+  border: 1px solid rgba(255, 253, 248, 0.22);
+  border-radius: 10px;
+  background: #031d16;
+  box-shadow: 0 26px 70px rgba(0, 0, 0, 0.26);
+}
+
+.interviewFrame iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
 }
 
 .sectionHeading {
@@ -416,8 +484,13 @@ main {
 
   .twoColumn,
   .supportLayout,
-  .movieGrid {
+  .movieGrid,
+  .interviewLayout {
     grid-template-columns: 1fr;
+  }
+
+  .interviewLayout {
+    gap: 38px;
   }
 
   .profileGrid {
@@ -437,9 +510,12 @@ main {
   }
 
   .navLinks {
-    flex-direction: column;
-    align-items: flex-end;
-    gap: 8px;
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    justify-items: end;
+    gap: 6px 12px;
+    font-size: 0.7rem;
+    text-align: right;
   }
 
   .heroContent {
@@ -479,6 +555,10 @@ main {
 
   .sectionHeading {
     display: block;
+  }
+
+  .interviewFrame {
+    border-radius: 7px;
   }
 
   .profileGrid {

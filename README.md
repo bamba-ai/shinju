@@ -68,4 +68,4 @@ Cloudflare の画面で直接コマンドを指定する場合は、以下でも
 - `npx wrangler pages deploy out --project-name shinju`
 - `npm run deploy:pages`
 
-古い設定で `npx wrangler deploy` が実行されても落ちないよう、`wrangler.jsonc` では `assets.directory` に `./out` を指定しています。
+`wrangler.jsonc` はCloudflare Pages用の設定として、`pages_build_output_dir` に `out` を指定しています。PagesではWorkers用の `assets` 設定は使用しません。

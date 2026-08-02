@@ -112,17 +112,14 @@ export default function Home() {
               ゴルフを始めたきっかけ、目標、そして応援してくださる皆さまへのメッセージ。
               青木 新樹選手の現在地を、インタビューでご覧ください。
             </p>
-            <a className="textLink" href="https://youtu.be/KVl5BmBbs88" target="_blank" rel="noreferrer">
-              YouTubeで開く <span aria-hidden="true">↗</span>
-            </a>
           </div>
           <div className="interviewFrame">
-            <iframe
-              src="https://www.youtube-nocookie.com/embed/KVl5BmBbs88?rel=0"
-              title="青木 新樹選手 インタビュー"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              allowFullScreen
-              loading="lazy"
+            <video
+              src="/media/shinju-interview.mp4"
+              controls
+              playsInline
+              preload="metadata"
+              aria-label="青木 新樹選手 インタビュー"
             />
           </div>
         </div>

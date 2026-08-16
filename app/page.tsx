@@ -7,7 +7,7 @@ const profileItems = [
   ["血液型", "AB型"],
   ["出身校", "ロスミニ・カレッジ"],
   ["所属", "フリー"],
-  ["ゴルフ開始", "8〜9歳ごろ"],
+  ["ゴルフ開始", "8歳"],
   ["始めたきっかけ", "父親の影響"],
   ["得意クラブ", "パター"],
   ["ドライバー平均飛距離", "約300ヤード"],
@@ -18,40 +18,22 @@ const profileItems = [
 const statItems = [
   ["300yd", "平均飛距離"],
   ["63", "ベストスコア"],
-  ["8-9歳", "ゴルフ開始"],
+  ["8歳", "ゴルフ開始"],
   ["180cm", "身長"]
-];
-
-const movieItems = [
-  {
-    title: "Practice Clip 01",
-    src: "/media/IMG_4869.mp4"
-  },
-  {
-    title: "Practice Clip 02",
-    src: "/media/IMG_3595.mp4"
-  },
-  {
-    title: "Practice Clip 03",
-    src: "/media/IMG_5630.mp4"
-  }
 ];
 
 export default function Home() {
   return (
     <main>
       <section className="hero" aria-label="青木 新樹選手の紹介">
-        <video
-          className="heroVideo"
-          src="/media/IMG_4869.mp4"
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="metadata"
-          aria-label="青木 新樹選手のゴルフ動画"
-        />
+        <div className="heroBackground" aria-hidden="true" />
         <div className="heroShade" />
+        <img
+          className="heroPortrait"
+          src="/images/新樹選手_背景透過.png"
+          alt=""
+          aria-hidden="true"
+        />
         <nav className="topNav" aria-label="サイト内メニュー">
           <a className="brand" href="/">
             Shinju Aoki
@@ -60,7 +42,7 @@ export default function Home() {
             <a href="#profile">Profile</a>
             <a href="#interview">Interview</a>
             <a href="#support">Support</a>
-            <a href="#movie">Movie</a>
+            <a href="#documents">Info</a>
           </div>
         </nav>
         <div className="heroContent">
@@ -79,6 +61,7 @@ export default function Home() {
             </a>
           </div>
         </div>
+        <span className="heroScroll" aria-hidden="true">Scroll <i /></span>
         <div className="heroStats" aria-label="主なプロフィール">
           {statItems.map(([value, label]) => (
             <div className="stat" key={label}>
@@ -120,6 +103,27 @@ export default function Home() {
               playsInline
               preload="metadata"
               aria-label="青木 新樹選手 インタビュー"
+            />
+          </div>
+        </div>
+      </section>
+
+      <section className="roundSection" id="round" aria-labelledby="round-heading">
+        <div className="sectionInner roundLayout">
+          <div className="roundCopy">
+            <p className="sectionKicker">Round</p>
+            <h2 id="round-heading">練習ラウンドの様子</h2>
+            <p>
+              コースでの実戦的なプレーを、YouTube動画でご覧いただけます。
+            </p>
+          </div>
+          <div className="youtubeFrame">
+            <iframe
+              src="https://www.youtube.com/embed/vIXPBM9Rmlw"
+              title="青木 新樹選手 練習ラウンド"
+              loading="lazy"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowFullScreen
             />
           </div>
         </div>
@@ -173,19 +177,21 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="movieSection" id="movie">
-        <div className="sectionInner">
-          <div className="sectionHeading">
-            <p className="sectionKicker">Movie</p>
-            <h2>練習とプレーの記録</h2>
+      <section className="documentsSection" id="documents">
+        <div className="sectionInner documentsLayout">
+          <div>
+            <p className="sectionKicker">Documents</p>
+            <h2>応援に関するご案内</h2>
           </div>
-          <div className="movieGrid">
-            {movieItems.map((movie) => (
-              <article className="movieCard" key={movie.title}>
-                <video src={movie.src} controls playsInline preload="metadata" aria-label={`${movie.title}の動画`} />
-                <h3>{movie.title}</h3>
-              </article>
-            ))}
+          <div className="documentLinks">
+            <a href="/docs/青木新樹選手_後援会_規約_20260818.pdf" target="_blank" rel="noreferrer">
+              <span>後援会規約</span>
+              <strong>PDFを開く ↗</strong>
+            </a>
+            <a href="/docs/青木新樹選手_後援会_プライバシーポリシー_20260818.pdf" target="_blank" rel="noreferrer">
+              <span>プライバシーポリシー</span>
+              <strong>PDFを開く ↗</strong>
+            </a>
           </div>
         </div>
       </section>

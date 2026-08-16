@@ -193,13 +193,21 @@ export default function Home() {
             </ul>
           </div>
           <div className="lineCard">
-            <img
-              src="/images/青木新樹選手の公式LINEアカウント.png"
-              alt="青木新樹選手の公式LINEアカウント QRコード"
-            />
+            <a
+              className="lineQrLink"
+              href="https://lin.ee/sBQ74Ad"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="青木新樹選手の公式LINEアカウントを開く"
+            >
+              <img
+                src="/images/青木新樹選手の公式LINEアカウント.png"
+                alt="青木新樹選手の公式LINEアカウント QRコード"
+              />
+            </a>
             <div>
               <strong>公式LINE</strong>
-              <span>QRコードを読み取ってください</span>
+              <span>QRコードを読み取るか、スマホでは画像をタップしてください。</span>
             </div>
           </div>
         </div>

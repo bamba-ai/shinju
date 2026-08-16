@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "sync:media": "rm -rf public/media public/images public/docs && mkdir -p public/media public/images public/docs && cp -R images/optimized/. public/media/ && cp images/烏山城CC.jpg images/新樹選手_背景透過.png public/images/ && cp docs/*.pdf public/docs/",
+    "sync:media": "rm -rf public/media public/images public/docs && mkdir -p public/media public/images public/docs && cp -R images/optimized/. public/media/ && cp images/烏山城CC.jpg images/新樹選手_背景透過.png images/青木新樹選手の公式LINEアカウント.png public/images/ && cp docs/*.pdf public/docs/",
     "predev": "npm run sync:media",
     "dev": "next dev",
     "prebuild": "npm run sync:media",

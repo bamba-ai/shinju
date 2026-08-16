@@ -42,6 +42,7 @@ export default function Home() {
             <a href="#profile">Profile</a>
             <a href="#interview">Interview</a>
             <a href="#support">Support</a>
+            <a href="#contact">Contact</a>
             <a href="#documents">Info</a>
           </div>
         </nav>
@@ -172,6 +173,33 @@ export default function Home() {
               <span>03</span>
               <strong>応援メッセージ</strong>
               <p>声援やご紹介など、できる形で青木 新樹君の挑戦を後押ししてください。</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="contactSection" id="contact" aria-labelledby="contact-heading">
+        <div className="sectionInner contactLayout">
+          <div className="contactCopy">
+            <p className="sectionKicker">Contact</p>
+            <h2 id="contact-heading">応援のお問い合わせ</h2>
+            <p>
+              公式LINEからお気軽にお問い合わせください。次のようなご相談をお待ちしています。
+            </p>
+            <ul>
+              <li>個人サポーターになりたい</li>
+              <li>企業・店舗スポンサーになりたい</li>
+              <li>応援メッセージを送りたい</li>
+            </ul>
+          </div>
+          <div className="lineCard">
+            <img
+              src="/images/青木新樹選手の公式LINEアカウント.png"
+              alt="青木新樹選手の公式LINEアカウント QRコード"
+            />
+            <div>
+              <strong>公式LINE</strong>
+              <span>QRコードを読み取ってください</span>
             </div>
           </div>
         </div>

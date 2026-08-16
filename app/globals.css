@@ -453,6 +453,88 @@ main {
   line-height: 1.75;
 }
 
+.contactSection {
+  background: var(--white);
+}
+
+.contactLayout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(280px, 0.72fr);
+  gap: 64px;
+  align-items: center;
+}
+
+.contactCopy h2 {
+  margin: 0;
+  font-size: clamp(2rem, 4vw, 3.25rem);
+  line-height: 1.2;
+}
+
+.contactCopy > p:not(.sectionKicker) {
+  max-width: 570px;
+  margin: 24px 0 0;
+  color: var(--muted);
+  line-height: 2;
+}
+
+.contactCopy ul {
+  display: grid;
+  gap: 10px;
+  margin: 22px 0 0;
+  padding: 0;
+  list-style: none;
+  color: var(--ink);
+  font-weight: 700;
+}
+
+.contactCopy li {
+  position: relative;
+  padding-left: 24px;
+}
+
+.contactCopy li::before {
+  position: absolute;
+  left: 0;
+  color: var(--gold);
+  content: "→";
+}
+
+.lineCard {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 22px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: #f1efe6;
+  box-shadow: var(--shadow);
+}
+
+.lineCard img {
+  display: block;
+  width: min(180px, 42%);
+  aspect-ratio: 1;
+  object-fit: contain;
+  border-radius: 8px;
+  background: var(--white);
+}
+
+.lineCard strong,
+.lineCard span {
+  display: block;
+}
+
+.lineCard strong {
+  font-size: 1.15rem;
+}
+
+.lineCard span {
+  margin-top: 8px;
+  color: var(--muted);
+  font-size: 0.82rem;
+  line-height: 1.6;
+}
+
 .movieGrid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -599,7 +681,8 @@ main {
   .movieGrid,
   .interviewLayout,
   .documentsLayout,
-  .roundLayout {
+  .roundLayout,
+  .contactLayout {
     grid-template-columns: 1fr;
   }
 
@@ -696,6 +779,10 @@ main {
 
   .interviewFrame {
     border-radius: 7px;
+  }
+
+  .lineCard {
+    justify-content: center;
   }
 
   .profileGrid {

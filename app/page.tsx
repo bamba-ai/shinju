@@ -130,7 +130,7 @@ export default function Home() {
         <div className="sectionInner">
           <div className="sectionHeading">
             <p className="sectionKicker">Profile</p>
-            <h2>青木 新樹選手について</h2>
+            <h2>青木 新樹について</h2>
           </div>
           <div className="profileGrid" aria-label="青木 新樹選手のプロフィール">
             {profileItems.map(([label, value]) => (

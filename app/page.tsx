@@ -15,14 +15,9 @@ const profileItems = [
   ["現在の区分", "アマチュア"]
 ];
 
-const statItems = [
-  ["300yd", "平均飛距離"],
-  ["63", "ベストスコア"],
-  ["8歳", "ゴルフ開始"],
-  ["180cm", "身長"]
-];
-
 export default function Home() {
+  const newsItems = getAllNews();
+
   return (
     <main>
       <section className="hero" aria-label="青木 新樹選手の紹介">
@@ -39,6 +34,7 @@ export default function Home() {
             Shinju Aoki
           </a>
           <div className="navLinks">
+            <a href="#news">News</a>
             <a href="#profile">Profile</a>
             <a href="#interview">Interview</a>
             <a href="#support">Support</a>
@@ -50,8 +46,7 @@ export default function Home() {
           <p className="eyebrow">プロゴルファーを目指す挑戦を、地域とともに。</p>
           <h1>青木 新樹</h1>
           <p className="lead">
-            東京都出身、ロスミニ・カレッジ出身。平均飛距離約300ヤードのドライバーと、
-            得意クラブのパターで一打ずつ未来を切り拓くアマチュアゴルファーです。
+            このサイトは、プロゴルファーを目指す青木 新樹選手の挑戦を伝え、応援の輪を広げるためのホームページです。日々の練習と試合への挑戦を通じて、プロへの道を一歩ずつ進んでいます。
           </p>
           <div className="heroActions" aria-label="主要リンク">
             <a className="primaryLink" href="#interview">
@@ -63,27 +58,28 @@ export default function Home() {
           </div>
         </div>
         <span className="heroScroll" aria-hidden="true">Scroll <i /></span>
-        <div className="heroStats" aria-label="主なプロフィール">
-          {statItems.map(([value, label]) => (
-            <div className="stat" key={label}>
-              <strong>{value}</strong>
-              <span>{label}</span>
-            </div>
-          ))}
-        </div>
       </section>
 
-      <section className="intro sectionBand">
-        <div className="sectionInner twoColumn">
-          <div>
-            <p className="sectionKicker">About</p>
-            <h2>一打の集中を、応援の力へ。</h2>
+      <section className="newsSection" id="news" aria-labelledby="news-heading">
+        <div className="sectionInner">
+          <div className="sectionHeading newsHeading">
+            <div>
+              <p className="sectionKicker">News</p>
+              <h2 id="news-heading">最新のお知らせ</h2>
+            </div>
+            <span>Latest updates</span>
           </div>
-          <p>
-            このサイトは、プロゴルファーを目指す青木 新樹選手の挑戦を伝え、
-            応援の輪を広げるためのホームページです。日々の練習と試合への挑戦を通じて、
-            プロへの道を一歩ずつ進んでいます。
-          </p>
+          <div className="newsList">
+            {newsItems.map((item) => (
+              <a className="newsItem" href={`/news/${item.slug}/`} key={item.slug}>
+                <time dateTime={`${item.date.slice(0, 4)}-${item.date.slice(4, 6)}-${item.date.slice(6, 8)}`}>
+                  {formatNewsDate(item.date)}
+                </time>
+                <strong>{item.title}</strong>
+                <span aria-hidden="true">→</span>
+              </a>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -244,3 +240,4 @@ export default function Home() {
     </main>
   );
 }
+import { formatNewsDate, getAllNews } from "../lib/news";

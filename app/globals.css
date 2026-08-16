@@ -559,7 +559,7 @@ main {
 
 @media (max-width: 900px) {
   .hero {
-    min-height: 88svh;
+    min-height: 1140px;
     padding: 24px 24px 28px;
   }
 
@@ -573,8 +573,9 @@ main {
   }
 
   .heroContent {
-    width: min(610px, 70%);
-    padding-bottom: 170px;
+    width: min(480px, 52%);
+    padding-top: 555px;
+    padding-bottom: 190px;
   }
 
   .hero h1 {
@@ -615,10 +616,12 @@ main {
   }
 
   .heroPortrait {
-    right: 0;
-    width: min(47vw, 450px);
-    max-height: 69%;
-    opacity: 0.9;
+    top: 104px;
+    right: 2%;
+    bottom: auto;
+    width: min(52vw, 500px);
+    max-height: 44%;
+    opacity: 0.94;
   }
 }
 
@@ -644,16 +647,17 @@ main {
 
   .heroContent {
     width: 100%;
-    padding-top: 120px;
+    padding-top: 560px;
     padding-bottom: 214px;
   }
 
   .heroPortrait {
-    right: -8%;
-    bottom: 182px;
-    width: 58vw;
-    max-height: 34%;
-    opacity: 0.72;
+    top: 96px;
+    right: -5%;
+    bottom: auto;
+    width: 72vw;
+    max-height: 42%;
+    opacity: 0.9;
   }
 
   .hero h1 {

@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { formatNewsDate, getNewsBySlug } from "../../../lib/news";
+import { formatNewsDate, getAllNews, getNewsBySlug } from "../../../lib/news";
 
 export function generateStaticParams() {
-  return [{ slug: "20260818" }, { slug: "20260816" }];
+  return getAllNews().map(({ slug }) => ({ slug }));
 }
 
 export const dynamicParams = false;
@@ -26,7 +26,10 @@ export default async function NewsArticlePage({ params }: { params: Promise<{ sl
     <main className="newsArticlePage">
       <header className="articleHeader">
         <a href="/" className="articleBrand">Shinju Aoki</a>
-        <a href="/#news" className="articleBack">← ニュース一覧へ</a>
+        <div className="articleHeaderLinks">
+          <a className="languageLink languageLinkDark" href={`/en/news/${slug}/`} hrefLang="en" lang="en">English</a>
+          <a href="/#news" className="articleBack">← ニュース一覧へ</a>
+        </div>
       </header>
       <article className="articleContent">
         <p className="sectionKicker">News</p>

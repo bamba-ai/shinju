@@ -1,3 +1,5 @@
+import { formatNewsDate, getAllNews } from "../lib/news";
+
 const profileItems = [
   ["生年月日", "2005年5月26日"],
   ["年齢", "21歳"],
@@ -40,6 +42,7 @@ export default function Home() {
             <a href="#support">Support</a>
             <a href="#contact">Contact</a>
             <a href="#documents">Info</a>
+            <a className="languageLink" href="/en/" hrefLang="en" lang="en">English</a>
           </div>
         </nav>
         <div className="heroContent">
@@ -240,4 +243,3 @@ export default function Home() {
     </main>
   );
 }
-import { formatNewsDate, getAllNews } from "../lib/news";

@@ -173,6 +173,11 @@ export default function Home() {
               <strong>応援メッセージ</strong>
               <p>声援やご紹介など、できる形で青木 新樹君の挑戦を後押ししてください。</p>
             </div>
+            <div>
+              <span>04</span>
+              <strong>会費のご案内</strong>
+              <p>個人会員：年会費 5,000円／法人会員：年会費 10,000円。会費は月割にならず、納入後の返金はできません。</p>
+            </div>
           </div>
         </div>
       </section>

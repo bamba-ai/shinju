@@ -2,9 +2,25 @@ import type { Metadata } from "next";
 import { formatNewsDate, getAllNews } from "../../lib/news";
 
 export const metadata: Metadata = {
-  title: "Shinju Aoki Support Site",
-  description: "The official support site for Shinju Aoki, pursuing a career in professional golf.",
-  alternates: { canonical: "/en/", languages: { ja: "/", en: "/en/" } }
+  title: "Shinju Aoki Official Support Site | Golfer",
+  description: "The official support site for Shinju Aoki, a golfer pursuing a professional career. Explore his profile, competition updates, interviews, practice rounds, news, and supporter information.",
+  alternates: { canonical: "/en/", languages: { ja: "/", en: "/en/", "x-default": "/" } },
+  openGraph: {
+    title: "Shinju Aoki Official Support Site | Golfer",
+    description: "Follow Shinju Aoki's journey toward a professional golf career.",
+    url: "/en/",
+    siteName: "Shinju Aoki Support Site",
+    locale: "en_US",
+    alternateLocale: "ja_JP",
+    type: "website",
+    images: [{ url: "/images/新樹選手_背景透過.png", alt: "Shinju Aoki, an aspiring professional golfer" }]
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Shinju Aoki Official Support Site | Golfer",
+    description: "Follow Shinju Aoki's journey toward a professional golf career.",
+    images: ["/images/新樹選手_背景透過.png"]
+  }
 };
 
 const profileItems = [

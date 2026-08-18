@@ -11,9 +11,30 @@ export const dynamicParams = false;
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
   const article = getNewsBySlug(slug);
+  const url = `/news/${slug}/`;
+
   return {
     title: article ? `${article.title} | 青木 新樹選手 応援サイト` : "ニュース | 青木 新樹選手 応援サイト",
-    description: article?.excerpt
+    description: article?.excerpt,
+    alternates: {
+      canonical: url,
+      languages: { ja: url, en: `/en/news/${slug}/`, "x-default": url }
+    },
+    openGraph: article ? {
+      title: `${article.title} | 青木 新樹選手 応援サイト`,
+      description: article.excerpt,
+      url,
+      locale: "ja_JP",
+      alternateLocale: "en_US",
+      type: "article",
+      images: article.images?.map((image) => ({ url: image.src, alt: image.alt }))
+    } : undefined,
+    twitter: article ? {
+      card: "summary_large_image",
+      title: `${article.title} | 青木 新樹選手 応援サイト`,
+      description: article.excerpt,
+      images: article.images?.map((image) => image.src)
+    } : undefined
   };
 }
 

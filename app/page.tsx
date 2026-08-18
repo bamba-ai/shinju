@@ -1,4 +1,53 @@
+import type { Metadata } from "next";
 import { formatNewsDate, getAllNews } from "../lib/news";
+
+const siteUrl = "https://shinju.bamba-ai.com";
+const profileImage = `${siteUrl}/images/新樹選手_背景透過.png`;
+
+export const metadata: Metadata = {
+  title: "青木 新樹（Shinju Aoki）公式応援サイト｜プロゴルファーへの挑戦",
+  description: "プロゴルファーを目指す青木 新樹（Shinju Aoki）選手の公式応援サイト。プロフィール、競技情報、インタビュー、練習ラウンド、最新ニュース、サポーター情報を紹介します。",
+  alternates: {
+    canonical: "/",
+    languages: { ja: "/", en: "/en/", "x-default": "/" }
+  },
+  openGraph: {
+    title: "青木 新樹（Shinju Aoki）公式応援サイト｜プロゴルファーへの挑戦",
+    description: "プロゴルファーを目指す青木 新樹（Shinju Aoki）選手の公式応援サイト。",
+    url: "/",
+    siteName: "青木 新樹選手 応援サイト",
+    locale: "ja_JP",
+    alternateLocale: "en_US",
+    type: "website",
+    images: [{ url: "/images/新樹選手_背景透過.png", alt: "プロゴルファーを目指す青木 新樹選手" }]
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "青木 新樹（Shinju Aoki）公式応援サイト｜プロゴルファーへの挑戦",
+    description: "プロゴルファーを目指す青木 新樹（Shinju Aoki）選手の公式応援サイト。",
+    images: ["/images/新樹選手_背景透過.png"]
+  }
+};
+
+const structuredData = JSON.stringify([
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: "青木 新樹",
+    alternateName: "Shinju Aoki",
+    birthDate: "2005-05-26",
+    nationality: "Japan",
+    jobTitle: "Golfer",
+    url: `${siteUrl}/`,
+    image: profileImage
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: "青木 新樹選手 応援サイト",
+    url: `${siteUrl}/`
+  }
+]);
 
 const profileItems = [
   ["生年月日", "2005年5月26日"],
@@ -22,6 +71,7 @@ export default function Home() {
 
   return (
     <main>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: structuredData }} />
       <section className="hero" aria-label="青木 新樹選手の紹介">
         <div className="heroBackground" aria-hidden="true" />
         <div className="heroShade" />

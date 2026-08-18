@@ -12,7 +12,31 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const article = getNewsBySlug(slug);
   const translated = article && getArticleTranslation(article);
-  return { title: translated ? `${translated.title} | Shinju Aoki Support Site` : "News | Shinju Aoki Support Site", description: translated?.excerpt };
+  const url = `/en/news/${slug}/`;
+
+  return {
+    title: translated ? `${translated.title} | Shinju Aoki Support Site` : "News | Shinju Aoki Support Site",
+    description: translated?.excerpt,
+    alternates: {
+      canonical: url,
+      languages: { ja: `/news/${slug}/`, en: url, "x-default": `/news/${slug}/` }
+    },
+    openGraph: translated ? {
+      title: `${translated.title} | Shinju Aoki Support Site`,
+      description: translated.excerpt,
+      url,
+      locale: "en_US",
+      alternateLocale: "ja_JP",
+      type: "article",
+      images: translated.images?.map((image) => ({ url: image.src, alt: image.alt }))
+    } : undefined,
+    twitter: translated ? {
+      card: "summary_large_image",
+      title: `${translated.title} | Shinju Aoki Support Site`,
+      description: translated.excerpt,
+      images: translated.images?.map((image) => image.src)
+    } : undefined
+  };
 }
 
 export default async function EnglishNewsArticlePage({ params }: { params: Promise<{ slug: string }> }) {

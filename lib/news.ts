@@ -10,6 +10,15 @@ export type NewsArticle = {
   details?: Array<[string, string]>;
   images?: Array<{ src: string; alt: string }>;
   link?: { href: string; label: string };
+  relatedLinks?: Array<{ href: string; label: string }>;
+  video?: {
+    name: string;
+    description: string;
+    embedUrl: string;
+    videoUrl: string;
+    thumbnailUrl: string;
+    dateCreated: string;
+  };
 };
 
 const newsDirectory = path.join(process.cwd(), "news");
@@ -60,6 +69,35 @@ function makeArticle(filename: string, source: string): NewsArticle | null {
         { src: "/images/応援サイト_モバイル版.png", alt: "青木 新樹選手応援サイトのモバイル表示" }
       ],
       link: { href: "https://shinju.bamba-ai.com/", label: "応援サイトを見る" }
+    };
+  }
+
+  if (sourceId === "20260814_青木新樹選手の練習ラウンド＠烏山カントリークラブ") {
+    return {
+      slug,
+      date,
+      title: "青木 新樹選手 練習ラウンド｜烏山城カントリークラブ 2026/8/14",
+      excerpt: "プロゴルファーを目指す青木 新樹（Shinju Aoki）選手の練習ラウンド動画。2026年8月14日、烏山城カントリークラブでのプレーの様子を紹介します。",
+      paragraphs: [
+        "プロゴルファーを目指す青木 新樹（Shinju Aoki）選手が、2026年8月14日に烏山城カントリークラブで行った練習ラウンドの様子をYouTubeで公開しました。青木新樹選手がコースで磨く実戦的なプレーを、ぜひご覧ください。",
+        "大会に向けた準備を重ねる青木 新樹選手への応援は、プロフィールや応援サイトのご案内からもご確認いただけます。"
+      ],
+      link: {
+        href: "https://www.youtube.com/watch?v=vIXPBM9Rmlw",
+        label: "青木 新樹選手の練習ラウンド動画をYouTubeで見る"
+      },
+      relatedLinks: [
+        { href: "/#profile", label: "青木 新樹選手プロフィール" },
+        { href: "/#support", label: "青木 新樹選手を応援する" }
+      ],
+      video: {
+        name: "青木 新樹選手 練習ラウンド｜烏山城カントリークラブ 2026/8/14",
+        description: "プロゴルファーを目指す青木 新樹（Shinju Aoki）選手が、2026年8月14日に烏山城カントリークラブで行った練習ラウンドの動画です。",
+        embedUrl: "https://www.youtube.com/embed/vIXPBM9Rmlw",
+        videoUrl: "https://www.youtube.com/watch?v=vIXPBM9Rmlw",
+        thumbnailUrl: "https://i.ytimg.com/vi/vIXPBM9Rmlw/hqdefault.jpg",
+        dateCreated: "2026-08-14"
+      }
     };
   }
 
@@ -126,6 +164,34 @@ export function getArticleTranslation(article: NewsArticle): NewsArticle {
       ],
       images: [{ src: "/images/応援サイト_モバイル版.png", alt: "Mobile view of the Shinju Aoki Support Site" }],
       link: { href: "https://shinju.bamba-ai.com/", label: "Visit the support site" }
+    };
+  }
+
+  if (article.slug === "20260814") {
+    return {
+      ...article,
+      title: "Shinju Aoki Practice Round at Karasuyamajo Country Club | Aug 14, 2026",
+      excerpt: "A practice-round video featuring Shinju Aoki, a golfer pursuing a professional career, at Karasuyamajo Country Club on August 14, 2026.",
+      paragraphs: [
+        "Shinju Aoki, a golfer pursuing a professional career, shared a YouTube video from his practice round at Karasuyamajo Country Club on August 14, 2026.",
+        "Watch Shinju's on-course preparation as he continues to build experience for upcoming competition."
+      ],
+      link: {
+        href: "https://www.youtube.com/watch?v=vIXPBM9Rmlw",
+        label: "Watch Shinju Aoki's practice-round video on YouTube"
+      },
+      relatedLinks: [
+        { href: "/en/#profile", label: "Shinju Aoki profile" },
+        { href: "/en/#support", label: "Support Shinju Aoki" }
+      ],
+      video: {
+        name: "Shinju Aoki Practice Round at Karasuyamajo Country Club | Aug 14, 2026",
+        description: "A video of Shinju Aoki's practice round at Karasuyamajo Country Club on August 14, 2026.",
+        embedUrl: "https://www.youtube.com/embed/vIXPBM9Rmlw",
+        videoUrl: "https://www.youtube.com/watch?v=vIXPBM9Rmlw",
+        thumbnailUrl: "https://i.ytimg.com/vi/vIXPBM9Rmlw/hqdefault.jpg",
+        dateCreated: "2026-08-14"
+      }
     };
   }
 

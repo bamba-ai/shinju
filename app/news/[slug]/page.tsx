@@ -28,12 +28,14 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       alternateLocale: "en_US",
       type: "article",
       images: article.images?.map((image) => ({ url: image.src, alt: image.alt }))
+        ?? (article.video ? [{ url: article.video.thumbnailUrl, alt: article.video.name }] : undefined)
     } : undefined,
     twitter: article ? {
       card: "summary_large_image",
       title: `${article.title} | 青木 新樹選手 応援サイト`,
       description: article.excerpt,
       images: article.images?.map((image) => image.src)
+        ?? (article.video ? [article.video.thumbnailUrl] : undefined)
     } : undefined
   };
 }
@@ -42,9 +44,26 @@ export default async function NewsArticlePage({ params }: { params: Promise<{ sl
   const { slug } = await params;
   const article = getNewsBySlug(slug);
   if (!article) notFound();
+  const videoStructuredData = article.video && JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "VideoObject",
+    name: article.video.name,
+    description: article.video.description,
+    thumbnailUrl: article.video.thumbnailUrl,
+    dateCreated: article.video.dateCreated,
+    embedUrl: article.video.embedUrl,
+    contentUrl: article.video.videoUrl,
+    creator: {
+      "@type": "Person",
+      name: "青木 新樹",
+      alternateName: "Shinju Aoki",
+      url: "https://shinju.bamba-ai.com/"
+    }
+  });
 
   return (
     <main className="newsArticlePage">
+      {videoStructuredData && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: videoStructuredData }} />}
       <header className="articleHeader">
         <a href="/" className="articleBrand">Shinju Aoki</a>
         <div className="articleHeaderLinks">
@@ -62,8 +81,24 @@ export default async function NewsArticlePage({ params }: { params: Promise<{ sl
         <div className="articleBody">
           {article.paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
         </div>
+        {article.video && (
+          <div className="youtubeFrame">
+            <iframe
+              src={article.video.embedUrl}
+              title={article.video.name}
+              loading="lazy"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowFullScreen
+            />
+          </div>
+        )}
         {article.link && (
           <a className="articleLink" href={article.link.href}>{article.link.label} ↗</a>
+        )}
+        {article.relatedLinks && (
+          <nav className="articleRelatedLinks" aria-label="関連リンク">
+            {article.relatedLinks.map((link) => <a href={link.href} key={link.href}>{link.label} →</a>)}
+          </nav>
         )}
         {article.details && (
           <dl className="articleDetails">

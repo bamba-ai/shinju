@@ -769,11 +769,22 @@ main {
   letter-spacing: 0.08em;
 }
 
+.articleFeaturedImage {
+  display: block;
+  width: min(280px, 100%);
+  height: auto;
+  margin: 0 auto 36px;
+}
+
 .articleContent h1 {
   margin: 18px 0 0;
   font-size: clamp(2rem, 5vw, 3.5rem);
   line-height: 1.24;
   text-wrap: balance;
+}
+
+.articleTitleLine {
+  display: block;
 }
 
 .articleLead {
@@ -794,6 +805,25 @@ main {
 
 .articleBody p + p {
   margin-top: 20px;
+}
+
+.articleBody h2 {
+  margin: 38px 0 18px;
+  color: var(--green-deep);
+  font-size: clamp(1.35rem, 3vw, 1.8rem);
+}
+
+.articleSignature {
+  margin-top: 32px;
+  text-align: right;
+}
+
+.articleSignature p {
+  margin: 0;
+}
+
+.articleSignature p + p {
+  margin-top: 8px;
 }
 
 .articleLink {

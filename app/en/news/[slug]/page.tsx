@@ -29,6 +29,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       alternateLocale: "ja_JP",
       type: "article",
       images: translated.images?.map((image) => ({ url: image.src, alt: image.alt }))
+        ?? (translated.featuredImage ? [{ url: translated.featuredImage.src, alt: translated.featuredImage.alt }] : undefined)
         ?? (translated.video ? [{ url: translated.video.thumbnailUrl, alt: translated.video.name }] : undefined)
     } : undefined,
     twitter: translated ? {
@@ -36,6 +37,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       title: `${translated.title} | Shinju Aoki Support Site`,
       description: translated.excerpt,
       images: translated.images?.map((image) => image.src)
+        ?? (translated.featuredImage ? [translated.featuredImage.src] : undefined)
         ?? (translated.video ? [translated.video.thumbnailUrl] : undefined)
     } : undefined
   };
@@ -46,6 +48,17 @@ export default async function EnglishNewsArticlePage({ params }: { params: Promi
   const source = getNewsBySlug(slug);
   if (!source) notFound();
   const article = getArticleTranslation(source);
+  const articleStructuredData = article.articleSchema && JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "NewsArticle",
+    headline: article.articleSchema.headline,
+    description: article.articleSchema.description,
+    datePublished: `${article.date.slice(0, 4)}-${article.date.slice(4, 6)}-${article.date.slice(6, 8)}`,
+    dateModified: `${article.date.slice(0, 4)}-${article.date.slice(4, 6)}-${article.date.slice(6, 8)}`,
+    mainEntityOfPage: `https://shinju.bamba-ai.com/en/news/${article.slug}/`,
+    image: `https://shinju.bamba-ai.com${article.articleSchema.image}`,
+    publisher: { "@type": "Organization", name: article.articleSchema.publisher }
+  });
   const videoStructuredData = article.video && JSON.stringify({
     "@context": "https://schema.org",
     "@type": "VideoObject",
@@ -62,5 +75,5 @@ export default async function EnglishNewsArticlePage({ params }: { params: Promi
     }
   });
 
-  return <main className="newsArticlePage" lang="en">{videoStructuredData && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: videoStructuredData }} />}<header className="articleHeader"><a href="/en/" className="articleBrand">Shinju Aoki</a><div className="articleHeaderLinks"><a className="languageLink languageLinkDark" href={`/news/${slug}/`} hrefLang="ja" lang="ja">日本語</a><a href="/en/#news" className="articleBack">← All news</a></div></header><article className="articleContent"><p className="sectionKicker">News</p><time dateTime={`${article.date.slice(0, 4)}-${article.date.slice(4, 6)}-${article.date.slice(6, 8)}`}>{formatNewsDate(article.date)}</time><h1>{article.title}</h1><p className="articleLead">{article.excerpt}</p><div className="articleBody">{article.paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}</div>{article.video && <div className="youtubeFrame"><iframe src={article.video.embedUrl} title={article.video.name} loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen /></div>}{article.link && <a className="articleLink" href={article.link.href}>{article.link.label} ↗</a>}{article.relatedLinks && <nav className="articleRelatedLinks" aria-label="Related links">{article.relatedLinks.map((link) => <a href={link.href} key={link.href}>{link.label} →</a>)}</nav>}{article.details && <dl className="articleDetails">{article.details.map(([label, value]) => <div key={label}><dt>{label}</dt><dd>{value}</dd></div>)}</dl>}{article.images && <div className="articleImages">{article.images.map((image) => <img key={image.src} src={image.src} alt={image.alt} />)}</div>}</article></main>;
+  return <main className="newsArticlePage" lang="en">{articleStructuredData && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: articleStructuredData}} />}{videoStructuredData && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: videoStructuredData }} />}<header className="articleHeader"><a href="/en/" className="articleBrand">Shinju Aoki</a><div className="articleHeaderLinks"><a className="languageLink languageLinkDark" href={`/news/${slug}/`} hrefLang="ja" lang="ja">日本語</a><a href="/en/#news" className="articleBack">← All news</a></div></header><article className="articleContent">{article.featuredImage && <img className="articleFeaturedImage" src={article.featuredImage.src} alt={article.featuredImage.alt} />}<p className="sectionKicker">News</p><time dateTime={`${article.date.slice(0, 4)}-${article.date.slice(4, 6)}-${article.date.slice(6, 8)}`}>{formatNewsDate(article.date)}</time><h1>{article.titleLines ? article.titleLines.map((line) => <span className="articleTitleLine" key={line}>{line}</span>) : article.title}</h1><p className="articleLead">{article.excerpt}</p><div className="articleBody">{article.bodyHeading && <h2>{article.bodyHeading}</h2>}{article.paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}{article.signatureLines && <div className="articleSignature">{article.signatureLines.map((line) => <p key={line}>{line}</p>)}</div>}</div>{article.video && <div className="youtubeFrame"><iframe src={article.video.embedUrl} title={article.video.name} loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen /></div>}{article.link && <a className="articleLink" href={article.link.href}>{article.link.label} ↗</a>}{article.relatedLinks && <nav className="articleRelatedLinks" aria-label="Related links">{article.relatedLinks.map((link) => <a href={link.href} key={link.href}>{link.label} →</a>)}</nav>}{article.details && <dl className="articleDetails">{article.details.map(([label, value]) => <div key={label}><dt>{label}</dt><dd>{value}</dd></div>)}</dl>}{article.images && <div className="articleImages">{article.images.map((image) => <img key={image.src} src={image.src} alt={image.alt} />)}</div>}</article></main>;
 }

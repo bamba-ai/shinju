@@ -5,10 +5,14 @@ export type NewsArticle = {
   slug: string;
   date: string;
   title: string;
+  titleLines?: string[];
   excerpt: string;
   paragraphs: string[];
+  signatureLines?: string[];
+  bodyHeading?: string;
   details?: Array<[string, string]>;
   images?: Array<{ src: string; alt: string }>;
+  featuredImage?: { src: string; alt: string };
   link?: { href: string; label: string };
   relatedLinks?: Array<{ href: string; label: string }>;
   video?: {
@@ -18,6 +22,12 @@ export type NewsArticle = {
     videoUrl: string;
     thumbnailUrl: string;
     dateCreated: string;
+  };
+  articleSchema?: {
+    headline: string;
+    description: string;
+    image: string;
+    publisher: string;
   };
 };
 
@@ -55,20 +65,40 @@ function makeArticle(filename: string, source: string): NewsArticle | null {
     };
   }
 
-  if (sourceId === "20260818_青木新樹選手応援サイトが正式リリース") {
+  if (sourceId === "20260818_青木新樹選手後援会の設立") {
     return {
       slug,
       date,
-      title: "青木 新樹選手応援サイトを正式リリースしました",
-      excerpt: "青木 新樹選手の挑戦や活動をお届けする公式応援サイトを公開しました。",
+      title: "青木新樹選手後援会 設立のご挨拶",
+      titleLines: ["青木新樹選手 後援会", "設立のご挨拶"],
+      excerpt: "2026年8月18日、プロゴルファーを目指す青木 新樹選手を支援する「青木新樹選手後援会」を設立しました。後援会会長・役員一同からの設立のご挨拶を掲載します。",
+      featuredImage: { src: "/images/青木新樹選手_後援会_ロゴ.jpg", alt: "青木新樹選手後援会 ロゴ" },
+      bodyHeading: "後援会設立のご挨拶",
       paragraphs: [
-        "このたび、青木 新樹選手応援サイトを正式にリリースしました。",
-        "本サイトでは、試合や活動の最新情報、インタビュー、プロフィールを通じて、プロゴルファーを目指す青木 新樹選手の挑戦をお届けします。皆さまとともに応援の輪を広げてまいります。"
+        "2026年8月18日、プロゴルファーを目指して挑戦を続ける青木 新樹選手を支援する「青木新樹選手後援会」を設立いたしました。後援会設立にあたり、会長・役員一同より皆さまへのご挨拶を掲載いたします。",
+        "このたび、夢と目標に向かって挑戦を続ける青木新樹選手を支援するため、後援会を設立する運びとなりました。",
+        "これまでの歩みを支えてこられたご家族をはじめ、関係者の皆さま、そして温かいご理解とご支援を寄せてくださった皆さまに、心より敬意と感謝を申し上げます。",
+        "夢を実現するためには、本人の努力と強い意志だけでなく、それを支える多くの方々の力が必要です。",
+        "私たちは、この後援会を通じて、青木新樹選手が安心して挑戦を続け、持てる力を存分に発揮できる環境を整えるとともに、皆さまと力を合わせ、青木新樹選手の夢の実現に向けて、責任を持って支えてまいります。",
+        "新馬場から世界へ。",
+        "この街から生まれた夢が、やがて世界の舞台へと羽ばたいていく。その挑戦を、皆さまとともに支え、応援していきたい。",
+        "SUPPORTING AMBITIONS, CREATING THE FUTURE",
+        "大きな志を支え、未来を創る。一人ひとりの想いを力に変えながら、ここ新馬場から世界へ――。",
+        "皆さまの温かいご支援とご協力を賜りますよう、心よりお願い申し上げます。"
       ],
-      images: [
-        { src: "/images/応援サイト_モバイル版.png", alt: "青木 新樹選手応援サイトのモバイル表示" }
+      signatureLines: ["令和8年8月18日", "青木新樹選手後援会", "会長　川原和子", "副会長　池田修一", "副会長兼会計　齋藤亮輔"],
+      relatedLinks: [
+        { href: "/", label: "青木新樹選手 応援サイト トップ" },
+        { href: "/#profile", label: "青木 新樹選手プロフィール" },
+        { href: "/#support", label: "後援会・サポートのご案内" },
+        { href: "/#contact", label: "公式LINEでお問い合わせ" }
       ],
-      link: { href: "https://shinju.bamba-ai.com/", label: "応援サイトを見る" }
+      articleSchema: {
+        headline: "青木新樹選手後援会 設立のご挨拶",
+        description: "2026年8月18日、プロゴルファーを目指す青木 新樹選手を支援する青木新樹選手後援会を設立しました。",
+        image: "/images/青木新樹選手_後援会_ロゴ.jpg",
+        publisher: "青木新樹選手後援会"
+      }
     };
   }
 
@@ -156,14 +186,36 @@ export function getArticleTranslation(article: NewsArticle): NewsArticle {
   if (article.slug === "20260818") {
     return {
       ...article,
-      title: "Shinju Aoki Support Site Officially Launches",
-      excerpt: "The official support site for Shinju Aoki is now live, sharing his journey toward professional golf.",
+      title: "Establishment of the Shinju Aoki Supporters Association",
+      titleLines: undefined,
+      excerpt: "On August 18, 2026, the Shinju Aoki Supporters Association was established to support Shinju Aoki as he pursues a professional golf career.",
+      bodyHeading: "Greeting on the establishment of the Supporters Association",
       paragraphs: [
-        "We are pleased to announce the official launch of the Shinju Aoki Support Site.",
-        "The site shares news, interviews, and profile information about Shinju Aoki as he pursues a career in professional golf. We hope to grow a circle of support together with everyone following his journey."
+        "On August 18, 2026, we established the Shinju Aoki Supporters Association to support Shinju Aoki as he continues his pursuit of a professional golf career. We would like to share a greeting from the chair and officers on the establishment of the association.",
+        "We have decided to establish this supporters association to support Shinju Aoki as he continues to pursue his dreams and goals.",
+        "We extend our heartfelt respect and gratitude to his family, everyone involved, and all those who have offered their warm understanding and support throughout his journey so far.",
+        "Achieving a dream requires not only the individual's effort and strong will, but also the support of many people.",
+        "Through this supporters association, we will help create an environment in which Shinju Aoki can continue to take on challenges with confidence and fully demonstrate his abilities. Together with everyone, we will responsibly support him as he works to realize his dream.",
+        "From Shinbaba to the world.",
+        "A dream born in this town will one day take flight on the world stage. We hope to support and cheer on that challenge together with all of you.",
+        "SUPPORTING AMBITIONS, CREATING THE FUTURE",
+        "Supporting great ambitions and creating the future. As we turn each person's thoughts into strength, from Shinbaba to the world.",
+        "We sincerely ask for your warm support and cooperation."
       ],
-      images: [{ src: "/images/応援サイト_モバイル版.png", alt: "Mobile view of the Shinju Aoki Support Site" }],
-      link: { href: "https://shinju.bamba-ai.com/", label: "Visit the support site" }
+      signatureLines: ["August 18, 2026", "Shinju Aoki Supporters Association", "Chair　川原和子", "Vice Chair　池田修一", "Vice Chair and Treasurer　齋藤亮輔"],
+      featuredImage: { src: "/images/青木新樹選手_後援会_ロゴ.jpg", alt: "Shinju Aoki Supporters Association logo" },
+      relatedLinks: [
+        { href: "/en/", label: "Shinju Aoki Support Site" },
+        { href: "/en/#profile", label: "Shinju Aoki profile" },
+        { href: "/en/#support", label: "Supporters information" },
+        { href: "/en/#contact", label: "Contact the official LINE account" }
+      ],
+      articleSchema: {
+        headline: "Establishment of the Shinju Aoki Supporters Association",
+        description: "On August 18, 2026, the Shinju Aoki Supporters Association was established to support Shinju Aoki as he pursues a professional golf career.",
+        image: "/images/青木新樹選手_後援会_ロゴ.jpg",
+        publisher: "青木新樹選手後援会"
+      }
     };
   }
 
